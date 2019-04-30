@@ -1620,13 +1620,12 @@ void thread_up(void) {
                         MSG("ERROR: [up] snprintf failed line %u\n", (__LINE__ - 4));
                         exit(EXIT_FAILURE);
                     }
-                }
-                else {
-                    // Add system time if we dont have a GPS
-                    time_t t_local = time(NULL);
-                    x = gmtime(&t_local);
-                    buff_index += snprintf((char *)(buff_up + buff_index), TX_BUFF_SIZE-buff_index, ",\"time\":\"%04i-%02i-%02iT%02i:%02i:%02i.0Z\"", (x->tm_year)+1900, (x->tm_mon)+1, x->tm_mday, x->tm_hour, x->tm_min, x->tm_sec); /* ISO 8601 format */
-                }
+                } else {
+			//Add system time if we dont have a GPS
+			time_t t_local = time(NULL);
+			x = gmtime(&t_local);
+			buff_index += snprintf((char *)(buff_up + buff_index), TX_BUFF_SIZE-buff_index, ",\"time\":\"%04i-%02i-%02iT%02i:%02i:%02i.0Z\"", (x->tm_year)+1900, (x->tm_mon)+1, x->tm_mday, x->tm_hour, x->tm_min, x->tm_sec); /* ISO 8601 format */
+		}
 
                 /* convert packet timestamp to GPS absolute time */
                 j = lgw_cnt2gps(local_ref, p->count_us, &pkt_gps_time);
@@ -2731,7 +2730,7 @@ void thread_gps(void) {
         /* blocking non-canonical read on serial port */
         ssize_t nb_char = read(gps_tty_fd, serial_buff + wr_idx, LGW_GPS_MIN_MSG_SIZE);
         if (nb_char <= 0) {
-            MSG("WARNING: [gps] read() returned value %d\n", nb_char);
+            //MSG("WARNING: [gps] read() returned value %d\n", nb_char);
             continue;
         }
         wr_idx += (size_t)nb_char;

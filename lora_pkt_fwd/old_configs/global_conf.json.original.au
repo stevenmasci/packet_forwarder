@@ -193,9 +193,9 @@
 			"rf_power": 27,
 			"dig_gain": 0
 		}
-	},
+    },
     "gateway_conf": {
-        "gateway_ID": "AA555A0000000777",
+        "gateway_ID": "AA555A0000000000",
         /* change with default server address/ports, or overwrite in local_conf.json */
         "server_address": "localhost",
         "serv_port_up": 1680,
@@ -209,7 +209,7 @@
         "forward_crc_error": false,
         "forward_crc_disabled": false,
         /* GPS configuration */
-        "gps_tty_path": "/dev/ttyAMA0",
+        "gps_tty_path": "/dev/ttyS0",
         /* GPS reference coordinates */
         "ref_latitude": 0.0,
         "ref_longitude": 0.0,
