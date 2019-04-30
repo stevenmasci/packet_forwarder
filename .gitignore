@@ -1,3 +1,9 @@
 *.o
 *.swp
 *.bak
+/.vscode
+
+util_ack
+util_sink
+util_tx_test
+lora_pkt_fwd
